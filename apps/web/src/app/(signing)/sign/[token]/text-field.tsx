@@ -228,6 +228,19 @@ export const TextField = ({ field, recipient, onSignField, onUnsignField }: Text
   const fieldDisplayName = labelDisplay ? labelDisplay : textDisplay;
   const charactersRemaining = (parsedFieldMeta?.characterLimit ?? 0) - (localText.length ?? 0);
 
+  const formtattedText = () => {
+    return (
+      <div>
+        {field.customText?.split('\n').map((line, index) => (
+          <React.Fragment key={index}>
+            {line}
+            <br />
+          </React.Fragment>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <SigningFieldContainer
       field={field}
@@ -274,9 +287,11 @@ export const TextField = ({ field, recipient, onSignField, onUnsignField }: Text
               },
             )}
           >
-            {field.customText.length < 20
+            {/* {field.customText.length < 20
               ? field.customText
-              : field.customText.substring(0, 15) + '...'}
+              : field.customText.substring(0, 15) + '...'} */}
+
+            {formtattedText()}
           </p>
         </div>
       )}
